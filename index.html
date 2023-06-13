@@ -19,25 +19,22 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
 
-    function render() {
-      ReactDOM.render(<Container />, root);
-    }
+    function App() {
+      const [counter, countUp] = React.useState(0);
 
-    function countUp() {
-      counter++;
-      render();
-    }
+      const onClick = () => {
+        countUp(counter + 1);
+      };
 
-    function Container() {
       return (
         <div>
           <h3>Total Clicks: {counter}</h3>
-          <button onClick={countUp}>Click Me!</button>
+          <button onClick={onClick}>Click Me!</button>
         </div>
       );
     }
-    render();
+
+    ReactDOM.render(<App />, root);
   </script>
 </html>
