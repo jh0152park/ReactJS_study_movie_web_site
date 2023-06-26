@@ -1,26 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [keywords, setKeywords] = useState("");
-
-  const onClick = () => setCount((prev) => prev + 1);
-  const onChange = (event) => setKeywords(event.target.value);
-
-  useEffect(() => {
-    console.log("keyword!");
-  }, [keywords]);
+  const [todo, setTodo] = useState("");
+  const onChange = (event) => setTodo(event.target.value);
+  console.log(todo);
 
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={onClick}>Click</button>
-      <input
-        value={keywords}
-        onChange={onChange}
-        type="text"
-        placeholder="Search here..."
-      ></input>
+      <form>
+        <input
+          value={todo}
+          onChange={onChange}
+          type="text"
+          placeholder="Write your to do..."
+        ></input>
+        <button>Add To Do</button>
+      </form>
     </div>
   );
 }
