@@ -2,12 +2,27 @@ import { useState } from "react";
 
 function App() {
   const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
+
   const onChange = (event) => setTodo(event.target.value);
-  console.log(todo);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (todo === "") {
+      return;
+    }
+
+    setTodos((currentTodos) => [...currentTodos, todo]);
+    setTodo("");
+  };
+
+  console.log(todos);
 
   return (
     <div>
-      <form>
+      <h1>My Todo Lists({todos.length})</h1>
+
+      <form onSubmit={onSubmit}>
         <input
           value={todo}
           onChange={onChange}
@@ -16,6 +31,13 @@ function App() {
         ></input>
         <button>Add To Do</button>
       </form>
+
+      <hr />
+      <ul>
+        {todos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
